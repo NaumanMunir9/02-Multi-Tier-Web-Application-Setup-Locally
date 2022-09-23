@@ -89,6 +89,63 @@ mysql -u root -p"$DATABASE_PASS"
 
 ```shell
 
+sudo -i
 
+yum update -y
+
+yum install epel-release -y
+
+yum install memcached -y
+
+systemctl start memcached
+
+systemctl enable memcached
+
+systemctl status memcached
+
+memcached -p 11211 -U 11111 -u memcached -d
+
+ss -tunlp | grep 11211
+
+```
+
+## Setup Rabbit MQ
+
+```shell
+
+sudo -i
+
+yum update -y
+
+yum install epel-release -y
+
+sudo yum install wget -y
+
+cd /tmp/
+
+wget http://packages.erlang-solutions.com/erlang-solutions-2.0-1.noarch.rpm
+
+sudo rpm -Uvh erlang-solutions-2.0-1.noarch.rpm
+
+sudo yum -y install erlang socat
+
+curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | sudo bash
+
+sudo yum install rabbitmq-server -y
+
+sudo systemctl start rabbitmq-server
+
+sudo systemctl enable rabbitmq-server
+
+sudo systemctl status rabbitmq-server
+
+# Config Change
+sudo sh -c 'echo "[{rabbit, [{loopback_users, []}]}]." > /etc/rabbitmq/rabbitmq.config'
+
+sudo rabbitmqctl add_user test test
+
+sudo rabbitmqctl set_user_tags test administratorRestart RabbitMQ service
+
+systemctl restart rabbitmq-server
 
 ```
