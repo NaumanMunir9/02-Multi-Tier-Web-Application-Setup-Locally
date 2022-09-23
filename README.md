@@ -31,9 +31,11 @@ Then look for the file :
 ---
 
 """shell
+
 $ vagrant up
 
 $ vagrant ssh db01
 
 $ yum update -y
+
 """
