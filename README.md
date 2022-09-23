@@ -30,12 +30,12 @@ Then look for the file :
 
 ---
 
-"""shell
+```shell
 
-$ vagrant up
+vagrant up
 
-$ vagrant ssh db01
+vagrant ssh db01
 
-$ yum update -y
+yum update -y
 
-"""
+```
